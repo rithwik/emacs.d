@@ -64,7 +64,12 @@ backup-directory-alist '(("." . "~/.emacs.d/backups"))
 (require 'solarized-light-theme)
 ;(require 'solarized-dark-theme)
 (require 'pomodoro)(pomodoro-add-to-mode-line) ;enabling pomodoro mode
- 
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 ;; --------------------------------------------------
 ;; Key bindings
 ;; --------------------------------------------------
