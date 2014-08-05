@@ -52,7 +52,7 @@
 ;; --------------------------------------------------
 ;; Environment Setup
 ;; --------------------------------------------------
-backup-directory-alist '(("." . "~/.emacs.d/backups"))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq my-dir "~/.emacs.d/"
       my-ac-dict-dir (format "%s/%s" my-dir "ac-dict"))
 
@@ -64,11 +64,6 @@ backup-directory-alist '(("." . "~/.emacs.d/backups"))
 (require 'solarized-light-theme)
 ;(require 'solarized-dark-theme)
 (require 'pomodoro)(pomodoro-add-to-mode-line) ;enabling pomodoro mode
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; --------------------------------------------------
 ;; Key bindings
@@ -201,6 +196,16 @@ backup-directory-alist '(("." . "~/.emacs.d/backups"))
 	  (lambda ()
 	    (org-present-small)
 	    (org-remove-inline-images)))
+
+;; --------------------------------------------------
+;; Setting up markdown-mode
+;; --------------------------------------------------
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 
 ;; --------------------------------------------------
 ;; Setting up python-mode
