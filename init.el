@@ -52,7 +52,7 @@
 ;; --------------------------------------------------
 ;; Environment Setup
 ;; --------------------------------------------------
-backup-directory-alist '(("." . "~/.emacs.d/backups"))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq my-dir "~/.emacs.d/"
       my-ac-dict-dir (format "%s/%s" my-dir "ac-dict"))
 
