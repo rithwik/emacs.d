@@ -6,6 +6,8 @@
 [#]*[#]
 
 packages/
+elpa/
+backups/
 
 /ac-comphist.dat
 /auto-save-list

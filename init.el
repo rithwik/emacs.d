@@ -8,6 +8,32 @@
   (when (file-regular-p file)
       (load file)))
 
+;; ---------------
+;; Custom Packages
+;; ---------------
+(require 'cl)
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+ 
+;; Install all packages required
+(load-file "~/.emacs.d/elpa-list.el")
+ 
+(package-initialize)
+ 
+(defun rk/packages-installed-p ()
+  (loop for pkg in rk/packages
+        when (not (package-installed-p pkg)) do (return nil)
+        finally (return t)))
+ 
+(unless (rk/packages-installed-p)
+  (message "%s" "Refreshing package database...")
+  (package-refresh-contents)
+  (dolist (pkg rk/packages)
+    (when (not (package-installed-p pkg))
+      (package-install pkg))))
+
 ;; --------------------------------------------------
 ;; Encoding
 ;; --------------------------------------------------
@@ -52,7 +78,7 @@
 ;; --------------------------------------------------
 ;; Environment Setup
 ;; --------------------------------------------------
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
 (setq my-dir "~/.emacs.d/"
       my-ac-dict-dir (format "%s/%s" my-dir "ac-dict"))
 
@@ -108,36 +134,36 @@
  
 ;; enable fullscreen toggle on f11
 (defun toggle-fullscreen (&optional f)
-	(interactive)
-	(let ((current-value (frame-parameter nil 'fullscreen)))
-		(set-frame-parameter nil 'fullscreen
-												 (if (equal 'fullboth current-value)
-														 (if (boundp 'old-fullscreen) old-fullscreen nil)
-													 (progn (setq old-fullscreen current-value)
-																	'fullboth)))))
+  (interactive)
+  (let ((current-value (frame-parameter nil 'fullscreen)))
+    (set-frame-parameter nil 'fullscreen
+			 (if (equal 'fullboth current-value)
+			     (if (boundp 'old-fullscreen) old-fullscreen nil)
+			   (progn (setq old-fullscreen current-value)
+				  'fullboth)))))
 
 ;; Rotate Windows on F10
 (defun rotate-windows ()
-	"Rotate your windows"
-	(interactive)
-	(cond
-	 ((not (> (count-windows) 1))
-		(message "You can't rotate a single window!"))
-	 (t
-		(let ((i 1)
-					(num-windows (count-windows)))
-			(while (< i num-windows)
-				(let* ((w1 (elt (window-list) i))
-							 (w2 (elt (window-list) (+ (% i num-windows) 1)))
-							 (b1 (window-buffer w1))
-							 (b2 (window-buffer w2))
-							 (s1 (window-start w1))
-							 (s2 (window-start w2)))
-					(set-window-buffer w1 b2)
-					(set-window-buffer w2 b1)
-					(set-window-start w1 s2)
-					(set-window-start w2 s1)
-					(setq i (1+ i))))))))
+  "Rotate your windows"
+  (interactive)
+  (cond
+   ((not (> (count-windows) 1))
+    (message "You can't rotate a single window!"))
+   (t
+    (let ((i 1)
+	  (num-windows (count-windows)))
+      (while (< i num-windows)
+	(let* ((w1 (elt (window-list) i))
+	       (w2 (elt (window-list) (+ (% i num-windows) 1)))
+	       (b1 (window-buffer w1))
+	       (b2 (window-buffer w2))
+	       (s1 (window-start w1))
+	       (s2 (window-start w2)))
+	  (set-window-buffer w1 b2)
+	  (set-window-buffer w2 b1)
+	  (set-window-start w1 s2)
+	  (set-window-start w2 s1)
+	  (setq i (1+ i))))))))
 
 ;; three little buffer killing helpers
 (defun kill-other-buffers ()
