@@ -89,7 +89,6 @@
 (require 'smex)
 (require 'solarized-light-theme)
 ;(require 'solarized-dark-theme)
-(require 'pomodoro)(pomodoro-add-to-mode-line) ;enabling pomodoro mode
 
 ;; --------------------------------------------------
 ;; Key bindings
@@ -198,7 +197,7 @@
 ;; Setting up Deft
 ;; --------------------------------------------------
 (require 'deft)(setq deft-extension "txt")
-(setq deft-directory my-dir)
+(setq deft-directory "~/deft/")
 (setq deft-use-filename-as-title t)
  
 ;; --------------------------------------------------

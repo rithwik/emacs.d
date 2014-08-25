@@ -1,10 +1,10 @@
-(defvar rk/packages '(
-		      auto-complete
+(defvar rk/packages '(auto-complete
 		      magit
 		      markdown-mode
 		      org
 		      org-present
 		      solarized-theme
-		      web-beautify
-		      python-mode)
+		      python-mode
+		      smex
+		      deft)
   "Default packages")
