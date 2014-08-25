@@ -27,12 +27,12 @@
 ;; --------------------------------------------------
 ;; Load all files in the "lisp" directory recursively
 ;; --------------------------------------------------
-(let ((default-directory "~/.emacs.d/lisp/"))
-  (normal-top-level-add-subdirs-to-load-path))
-(setq my-dir (expand-file-name "~/.emacs.d/lisp/"))
-(dolist (file (directory-files my-dir t "\\w+"))
-  (when (file-regular-p file)
-      (load file)))
+;; (let ((default-directory "~/.emacs.d/lisp/"))
+;;   (normal-top-level-add-subdirs-to-load-path))
+;; (setq my-dir (expand-file-name "~/.emacs.d/lisp/"))
+;; (dolist (file (directory-files my-dir t "\\w+"))
+;;   (when (file-regular-p file)
+;;       (load file)))
 
 ;; --------------------------------------------------
 ;; Encoding
