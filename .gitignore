@@ -1,13 +1,41 @@
+# Gitignore file
+
+# Remove backup files
 *#
 *.
 *.elc
 *~
 .#*
-[#]*[#]
 
-packages/
+# Emacs packages
 elpa/
-backups/
+var/
 
+#  Emacs tmp files & Misc
+/.DS_Store
+/.emacs.desktop
+/.emacs.desktop.lock
+/.mc-lists.el
+/.python-environments/
+/.watsonresults
+/abbrev_defs
 /ac-comphist.dat
 /auto-save-list
+/bookmarks
+/edts
+/eshell/history
+/eshell/lastdir
+/games/
+/ido.last
+/newsticker/feeds/
+/places
+/private.el
+/projectile-bookmarks.eld
+/projectile.cache
+/recentf
+/session*
+/smex-items
+/snippets/
+/tramp
+/url/
+/url/cookies
