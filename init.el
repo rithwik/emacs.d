@@ -723,3 +723,6 @@
 
 (if window-system
     (load-theme 'angel-light t))
+
+(require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
