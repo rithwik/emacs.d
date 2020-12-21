@@ -1,5 +1,11 @@
 # Gitignore file
 
+beancount-mode/
+elpy/
+network-security.data
+org-present/
+transient/
+
 # Remove backup files
 *#
 *.
@@ -43,6 +49,3 @@ var/
 ede-projects.el
 .watsonrc
 .gitmodules
-
-
-
