@@ -172,28 +172,38 @@
 (global-set-key (kbd "M-p") 'org-present)
 
 (use-package org-bullets
-  :ensure t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 
-(setq org-agenda-files (list "~/orgfile.org"))
+(setq org-agenda-files (list org-directory)) ; "~/org/orgfile.org"))
 (setq org-capture-templates
-      '(("l" "Link" entry (file+headline "~/org/links.org" "Links")
+      '(("l" "Link" entry (file+headline "~/org/captures.org" "Links")
          "* %a %^g\n %?\n %T\n %i")
-        ("b" "Blog idea" entry (file+headline "~/org/i.org" "POSTS:")
+        ("i" "Idea" entry (file+headline "~/org/captures.org" "Ideas")
          "* %?\n%T" :prepend t)
-        ("t" "To Do Item" entry (file+headline "~/org/i.org" "To Do and Notes")
+        ("t" "Todo" entry (file+headline "~/org/captures.org" "Todo")
          "* TODO %?\n%u" :prepend t)
-        ("m" "Mail To Do" entry (file+headline "~/org/i.org" "To Do and Notes")
-         "* TODO %a\n %?" :prepend t)
-        ("n" "Note" entry (file+olp "~/org/i.org" "Notes")
+        ("n" "Note" entry (file+headline "~/org/captures.org" "Notes")
          "* %u %? " :prepend t)))
 
+(use-package org-journal
+  :init
+  ;; Change default prefix key; needs to be set before loading org-journal
+  (setq org-journal-prefix-key "C-c j ")
+  :config
+  (setq org-journal-dir "~/org/journal/"
+        org-journal-date-format "%Y-%m-%d"
+	org-journal-file-type "monthly"
+	org-journal-file-format "%Y-%m.org"))
+
 (use-package shell-pop
-  :bind ("s-t" . shell-pop))
+  :init
+  (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+  (setq shell-pop-term-shell "/bin/zsh")
+  (setq shell-pop-universal-key "s-t"))
 
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ; open fullscreen
 (set-face-attribute 'default nil :font "Fira Code Retina 14")
@@ -216,6 +226,8 @@
 (setq confirm-kill-emacs 'y-or-n-p)      ; y and n instead of yes and no when quitting
 (setq tool-bar-mode -1)
 (setq show-paren-mode t)
+(display-time-mode 1)
+(setq display-time-default-load-average nil)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -241,5 +253,5 @@
  '(org-startup-folded 'overview)
  '(org-startup-indented t)
  '(package-selected-packages
-   '(shell-pop ace-window epresent magit doom-themes elpy org-bullets yasnippet which-key use-package spacemacs-theme s poet-theme pandoc-mode monokai-theme markdown-mode ivy-rich exec-path-from-shell evil counsel company-jedi)))
+   '(org-journal shell-pop ace-window epresent magit doom-themes elpy org-bullets yasnippet which-key use-package spacemacs-theme s poet-theme pandoc-mode monokai-theme markdown-mode ivy-rich exec-path-from-shell evil counsel company-jedi)))
 
