@@ -180,9 +180,7 @@
 
 (setq org-agenda-files (list org-directory)) ; "~/org/orgfile.org"))
 (setq org-capture-templates
-      '(("l" "Link" entry (file+headline "~/org/captures.org" "Links")
-         "* %a %^g\n %?\n %T\n %i")
-        ("i" "Idea" entry (file+headline "~/org/captures.org" "Ideas")
+      '(("i" "Idea" entry (file+headline "~/org/captures.org" "Ideas")
          "* %?\n%T" :prepend t)
         ("t" "Todo" entry (file+headline "~/org/captures.org" "Todo")
          "* TODO %?\n%u" :prepend t)
