@@ -29,6 +29,8 @@
 	 ("C-a" . 'evil-beginning-of-line))
   :config
   (evil-mode 1))
+(add-hook 'calendar (lambda () (evil-mode -1)))
+(add-hook 'magit (lambda () (evil-mode -1)))
 
 (use-package ivy
   :defer 0.1
