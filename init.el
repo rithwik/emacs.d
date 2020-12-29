@@ -213,6 +213,9 @@
 (global-set-key (kbd "s-p") 'counsel-M-x)
 (global-set-key (kbd "s-b") 'ivy-switch-buffer)
 (global-set-key (kbd "s-B") 'ivy-switch-buffer-other-window)
+(global-set-key (kbd "<s-up>") 'beginning-of-buffer)
+(global-set-key (kbd "<s-down>") 'end-of-buffer)
+
 
 (show-paren-mode t)
 (setq inhibit-startup-message t)         ; Don't show the startup message
