@@ -84,7 +84,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-gruvbox t)
+  (load-theme 'doom-solarized-light t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -177,8 +177,9 @@
 
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
+(add-hook 'org-mode-hook 'visual-line-mode)
 
-(setq org-agenda-files (list org-directory)) ; "~/org/orgfile.org"))
+(setq org-agenda-files (list org-directory))
 (setq org-capture-templates
       '(("i" "Idea" entry (file+headline "~/org/captures.org" "Ideas")
          "* %?\n%T" :prepend t)
@@ -186,6 +187,8 @@
          "* TODO %?\n%u" :prepend t)
         ("n" "Note" entry (file+headline "~/org/captures.org" "Notes")
          "* %u %? " :prepend t)))
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "WIP(w)" "|" "DONE(d)")))
 
 (use-package org-journal
   :init
@@ -204,7 +207,7 @@
   (setq shell-pop-universal-key "s-t"))
 
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ; open fullscreen
-(set-face-attribute 'default nil :font "Fira Code Retina 14")
+(set-face-attribute 'default nil :font "Fira Code Retina 15")
 (tool-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; Make ESC quit prompts
@@ -243,7 +246,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("d6603a129c32b716b3d3541fc0b6bfe83d0e07f1954ee64517aa62c9405a3441" default))
+   '("4a8d4375d90a7051115db94ed40e9abb2c0766e80e228ecad60e06b3b397acab" "f2927d7d87e8207fa9a0a003c0f222d45c948845de162c885bf6ad2a255babfd" "990e24b406787568c592db2b853aa65ecc2dcd08146c0d22293259d400174e37" "08a27c4cde8fcbb2869d71fdc9fa47ab7e4d31c27d40d59bf05729c4640ce834" "d6603a129c32b716b3d3541fc0b6bfe83d0e07f1954ee64517aa62c9405a3441" default))
  '(org-confirm-babel-evaluate nil)
  '(org-default-notes-file (concat org-directory "/notes.org"))
  '(org-directory "~/org")
@@ -255,4 +258,3 @@
  '(org-startup-indented t)
  '(package-selected-packages
    '(org-journal shell-pop ace-window epresent magit doom-themes elpy org-bullets yasnippet which-key use-package spacemacs-theme s poet-theme pandoc-mode monokai-theme markdown-mode ivy-rich exec-path-from-shell evil counsel company-jedi)))
-
